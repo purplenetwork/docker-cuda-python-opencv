@@ -48,7 +48,7 @@ RUN \
     wget && apt-get upgrade -y && rm -rf /var/lib/apt/lists/*
 
 WORKDIR /
-RUN pip3 install virtualenv virtualenvwrapper jasper numpy
+RUN pip3 install virtualenv virtualenvwrapper jasper numpy python-osc
 
 WORKDIR /
 ENV OPENCV_VERSION="3.4.6"
@@ -74,10 +74,9 @@ RUN cmake -D CMAKE_BUILD_TYPE=RELEASE \
  -D PYTHON_EXECUTABLE=~/.virtualenvs/cv/bin/python \
  -D BUILD_EXAMPLES=ON ..
 
-RUN make -j${nproc}
-RUN make install
-RUN ldconfig 
-RUN deactivate
+# RUN make -j${nproc}
+# RUN make install
+# RUN ldconfig 
 
 WORKDIR /
 RUN mkdir /work
